@@ -1,7 +1,7 @@
 package com.crm.zohocrm.generic;
 //Fixed Configuration Information
 public interface IAutoConstants {
-	String DEFAULT_BROWSER="chrome";
+	String DEFAULT_BROWSER="chrme";
 	
 	String APP_URL="http://192.168.1.52:8080/";
 	String CHROME_KEY="webdriver.chrome.driver";
