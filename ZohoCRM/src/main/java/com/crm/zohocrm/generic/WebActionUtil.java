@@ -1,5 +1,8 @@
 package com.crm.zohocrm.generic;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -89,5 +92,31 @@ public class WebActionUtil {
 		}
 		alert.accept();
 		return true;
+	}
+	
+	public boolean switchToWindow(String titleContains) {
+		Set<String> allWindowIds = driver.getWindowHandles();
+		for(String wid:allWindowIds) {
+			driver.switchTo().window(wid);
+			if(driver.getTitle().contains(titleContains)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void switchToParentWindow() {
+		driver.switchTo().window(new ArrayList<String>(driver.getWindowHandles()).get(0));
+	}
+	
+	public void closeWindow(String titleContains) {
+		Set<String> allWindowIds = driver.getWindowHandles();
+		for(String wid:allWindowIds) {
+			driver.switchTo().window(wid);
+			if(driver.getTitle().contains(titleContains)) {
+				driver.close();	
+				break;
+			}
+		}
 	}
 }

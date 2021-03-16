@@ -3,10 +3,12 @@ package com.crm.zohocrm.testscripts;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -27,7 +29,7 @@ public class BaseTest implements IAutoConstants {
 	public WebActionUtil webActionUtil;
 	public HomePage homePage;
 	@Parameters({"browser","appUrl","implicit","explicit"})
-	@BeforeClass(alwaysRun = true)
+	@BeforeClass(alwaysRun=true)
 	public void openApp(@Optional(DEFAULT_BROWSER)String browser,
 						@Optional(APP_URL)String appUrl,
 						@Optional(ITO)String implict,
@@ -53,14 +55,14 @@ public class BaseTest implements IAutoConstants {
 	}
 	
 	@Parameters({"user","pass"})
-	@BeforeMethod(alwaysRun = true)
+	@BeforeMethod(alwaysRun=true)
 	public void loginToApp(@Optional(DEFAULT_USERNAME)String user,
 						   @Optional(DEFAULT_PASSWORD) String pass) {
 		LoginPage loginPage = new LoginPage(driver, webActionUtil);
 		homePage = loginPage.signIn(user, pass);
 	}
 	
-	@AfterMethod(alwaysRun = true)
+	@AfterMethod(alwaysRun=true)
 	public void logoutFromApp(ITestResult result) {
 		 if(result.getStatus()==ITestResult.FAILURE) {
 			System.out.println(Utility.getImage(driver, result.getName()));
@@ -69,8 +71,10 @@ public class BaseTest implements IAutoConstants {
 		homePage.logout();
 	}
 	
-	@AfterClass(alwaysRun = true)
+	@AfterClass(alwaysRun=true)
 	public void closeApp() {
 		driver.quit();
 	}
+	
+	@FindBy(id="username")private WebElement ele;
 }
