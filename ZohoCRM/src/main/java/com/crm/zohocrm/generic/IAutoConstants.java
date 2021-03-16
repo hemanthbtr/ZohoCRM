@@ -3,7 +3,7 @@ package com.crm.zohocrm.generic;
 public interface IAutoConstants {
 	String DEFAULT_BROWSER="chrome";
 	
-	String APP_URL="http://192.168.201.129:8080/";
+	String APP_URL="http://14.99.190.22:7777/";
 	String CHROME_KEY="webdriver.chrome.driver";
 	String CHROME_PATH="./drivers/chromedriver.exe";
 	String GECKO_KEY="webdriver.gecko.driver";
